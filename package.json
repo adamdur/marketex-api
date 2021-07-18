@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "npx nodemon --exec babel-node app.js",
+    "server": "babel-node app.js",
     "migrate": "knex migrate:latest",
     "migrate:make": "knex migrate:make",
     "migrate:rollback": "knex migrate:rollback",
