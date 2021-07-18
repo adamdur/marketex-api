@@ -8,7 +8,7 @@ import sql from "../../../config/db";
  * @param {object} res
  * @returns {*}
  */
-export async function getPosts(req, res) {
+export async function getSales(req, res) {
     try {
         let allowedIps = process.env.ALLOWED_IPS
         let authorized = allowedIps.split(',').includes(req.connection.remoteAddress);
@@ -21,7 +21,12 @@ export async function getPosts(req, res) {
         let order = availableOrders.includes(queryOrder) ? queryOrder : 'asc';
 
         let data = await new Promise((resolve, reject) => {
-            sql.query( `SELECT bot, type, avg_price, posts_count, users_count, lifetime is_lifetime, date FROM posts_slim WHERE type IN ('wts', 'wtb') ORDER BY date, id ${order} LIMIT ?, ?`, [limit * (page - 1), limit], ( err, rows ) => {
+            sql.query(
+                `SELECT bot, AVG(price) price, renewal, renewal_type, date
+                FROM sales 
+                GROUP BY bot, date, renewal
+                ORDER BY date, id ${order} LIMIT ?, ?`,
+                [limit * (page - 1), limit], ( err, rows ) => {
                 if(err){
                     return reject(err);
                 }
