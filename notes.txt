@@ -1,0 +1,73 @@
+
+bots
+bot_renewal
+
+
+inventory
+- id
+- bot_id
+- bot_renewal
+- user_id
+- renewal_expiry
+- active
+- sold
+- created_at
+- updated_at
+
+bot_purchases
+- id
+- inventory_item
+- user_id
+- price
+- date
+
+bot_sales
+- id
+- inventory_item
+- user_id
+- price
+- date
+
+bot_rentals
+- id
+- inventory_item
+- user_id
+- created_at
+- start_at
+- end_at
+- price
+
+bot_trades
+- id
+- user_id
+- created_at
+
+bot_traded_out
+- id
+- trade_id
+- inventory_item
+- user_id
+- extra_cash
+
+bot_traded_in
+- id
+- trade_id
+- inventory_item
+- user_id
+- extra_cash
+
+bot_keys
+- id
+- inventory_item
+- user_id
+- key
+
+bot_accounts
+- id
+- inventory_item
+- user_id
+- email
+- password
+- type (discord, email, dashboard)
+
+
